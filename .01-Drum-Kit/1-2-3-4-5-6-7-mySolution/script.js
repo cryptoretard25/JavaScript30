@@ -4,20 +4,16 @@ const keys = document.querySelectorAll(".container .key");
 const audios = document.querySelectorAll("audio");
 
 window.addEventListener("keydown", function (event) {
-  const code = event.keyCode;
-  const key = getKey(keys, code);
-  const audio = getKey(audios, code);
-  audio.play();
+  const audio = audios[event.key - 1];
+  const key = keys[event.key - 1];
+
+  if (!audio) return;
+  log(key);
+  log(audio);
   key.classList.add("playing");
+  audio.currentTime = 0;
+  audio.play();
   setTimeout(() => {
     key.classList.remove("playing");
   }, 100);
 });
-
-function getKey(nodes, keycode) {
-  let result;
-  nodes.forEach((element) => {
-    if (+element.dataset["key"] === keycode) result = element;
-  });
-  return result;
-}
