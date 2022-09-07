@@ -32,7 +32,7 @@ const people = [ "Bernhard, Sandra", "Bethea, Erin", "Becker, Carl", "Bentsen, L
 const born = inventors.filter((inventor) => {
   return inventor.year > 1500 && inventor.year < 1600;
 });
-log(born);
+log({born});
 //---------------------------------------------------------------------------------------------
 // Array.prototype.map()
 // 2. Give us an array of the inventors first and last names
@@ -47,21 +47,21 @@ log({ lived, fullNames });
 const sortByBirth = inventors.sort(function (a, b) {
   return a.year - b.year;
 });
-log(sortByBirth);
+log({sortByBirth});
 //---------------------------------------------------------------------------------------------
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
-const total = inventors.reduce(
+const totalYears = inventors.reduce(
   (accumulator, item) => accumulator + (item.passed - item.year),
   0
 );
-log(total);
+log({ totalYears });
 //---------------------------------------------------------------------------------------------
 // 5. Sort the inventors by years lived
 const sortByLived = inventors.sort(function (current, next) {
   return current.passed - current.year > next.passed - next.year ? 1 : -1;
 });
-log(sortByLived);
+log({sortByLived});
 //---------------------------------------------------------------------------------------------
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -70,23 +70,19 @@ const array = [...category];
 const de = array
   .map((link) => link.innerText)
   .filter((item) => item.includes("de"));
+log({de})
 //---------------------------------------------------------------------------------------------
 // 7. sort Exercise
 // Sort the people alphabetically by last name
-const temp = people.map((item) => {
-  return item.split(", ");
-});
-const result = temp
-  .sort((current, next) => {
-    return current[0] > next[0] ? 1 : -1;
-  })
-  .map((item) => item.join(", "));
+
+//const temp = people.map((item) => { return item.split(", "); }); const result = temp .sort((current, next) => { return current[0] > next[0] ? 1 : -1; }) .map((item) => item.join(", "));
 
 const alpha = people.sort((current, next) => {
-  const [currentLastname, currentFirstname] = current.split(", ");
-  const [nextLastname, nextFirstname] = next.split(", ");
+  const [currentLastname, ] = current.split(", ");
+  const [nextLastname, ] = next.split(", ");
   return currentLastname > nextLastname ? 1 : -1;
 });
+log({alpha})
 //---------------------------------------------------------------------------------------------
 // 8. Reduce Exercise
 // Sum up the instances of each of these
